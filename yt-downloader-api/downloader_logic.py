@@ -61,8 +61,13 @@ def get_valid_playlist_info(playlist_url):
     ydl_info_opts = {
         'extract_info': True,
         'noplaylist': False,
+        'ignoreerrors': True,
         'logtostderr': False,
-        'skip_download': True, # Não queremos baixar nada nesta fase
+        'skip_download': True, 
+        'quiet': True,        
+        'noprogress': True,   
+        'logtostderr': False, 
+        'no_warnings': True,
     }
 
     # Combina as opções de info com as de rede
