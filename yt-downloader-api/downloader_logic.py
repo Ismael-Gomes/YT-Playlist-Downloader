@@ -68,8 +68,11 @@ def get_valid_playlist_info(playlist_url):
         'noprogress': True,   
         'logtostderr': False, 
         'no_warnings': True,
-        'dump_single_json': True,  # Força a extração de info sem processar o arquivo individualmente
-        'flat_playlist': True,
+
+        'flat_playlist': True, 
+        'force_generic_extractor': True, # Tenta extrair a URL de forma mais genérica
+        'skip_download': True,
+        'default_search': 'ytsearch',
 
         **PRODUCTION_NETWORK_OPTS
     }
@@ -81,7 +84,7 @@ def get_valid_playlist_info(playlist_url):
     
     try:
         with yt_dlp.YoutubeDL(final_info_opts) as ydl:
-            info = ydl.extract_info(playlist_url, download=False)
+            info = ydl.extract_info(playlist_url, download=False, process=True)
         
         # O yt-dlp pode retornar um vídeo único mesmo se for uma playlist, então verificamos 'entries'
         if 'entries' in info and info['entries']:
