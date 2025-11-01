@@ -68,6 +68,10 @@ def get_valid_playlist_info(playlist_url):
         'noprogress': True,   
         'logtostderr': False, 
         'no_warnings': True,
+        'dump_single_json': True,  # Força a extração de info sem processar o arquivo individualmente
+        'flat_playlist': True,
+
+        **PRODUCTION_NETWORK_OPTS
     }
 
     # Combina as opções de info com as de rede
